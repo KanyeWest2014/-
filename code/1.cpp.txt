@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int countVowels(const string& str, int index = 0) {
+    // Базовый случай: достигли конца строки
+    if (index >= str.length()) {
+        return 0;
+    }
+    
+    char ch = tolower(str[index]);
+    int current = 0;
+    
+    // Проверяем, является ли текущий символ гласной
+    if (ch == 'a' || ch == 'e' || ch == 'i' || 
+        ch == 'o' || ch == 'u') {
+        current = 1;
+    }
+    
+    // Рекурсивный вызов для оставшейся части строки
+    return current + countVowels(str, index + 1);
+}
+
+int main() {
+    string input;
+    cout << "Введите строку: ";
+    getline(cin, input);
+    
+    int result = countVowels(input);
+    cout << "Количество гласных: " << result << endl;
+    
+    return 0;
+}

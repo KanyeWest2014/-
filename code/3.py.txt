@@ -1,0 +1,12 @@
+def count_vowels(s, index=0):
+    if index >= len(s):
+        return 0
+    ch = s[index].lower()
+    current = 1 if ch in 'aeiou' else 0
+    
+    return current + count_vowels(s, index + 1)
+
+# Пример использования
+input_str = input("Введите строку: ")
+result = count_vowels(input_str)
+print("Количество гласных:", result)
