@@ -1,42 +1,5 @@
  1. Код для подсчёта гласных в строке
 
-#### C++
-```cpp
-#include <iostream>
-#include <string>
-using namespace std;
-
-int countVowels(const string& str, int index = 0) {
-    // Базовый случай: достигли конца строки
-    if (index >= str.length()) {
-        return 0;
-    }
-    
-    char ch = tolower(str[index]);
-    int current = 0;
-    
-    // Проверяем, является ли текущий символ гласной
-    if (ch == 'a' || ch == 'e' || ch == 'i' || 
-        ch == 'o' || ch == 'u') {
-        current = 1;
-    }
-    
-    // Рекурсивный вызов для оставшейся части строки
-    return current + countVowels(str, index + 1);
-}
-
-int main() {
-    string input;
-    cout << "Введите строку: ";
-    getline(cin, input);
-    
-    int result = countVowels(input);
-    cout << "Количество гласных: " << result << endl;
-    
-    return 0;
-}
-```
-
 **Объяснение алгоритма (C++):**  
 1. Функция `countVowels` принимает строку и текущий индекс (по умолчанию — 0).  
 2. **Базовый случай:** если индекс вышел за границы строки, возвращаем 0 (больше символов нет).  
@@ -50,56 +13,9 @@ int main() {
 - Каждый символ обрабатывается ровно один раз (один рекурсивный вызов на символ).  
 - Глубина рекурсии тоже *n*, но это не влияет на асимптотику.
 
-#### Java
-```java
-import java.util.Scanner;
 
-public class VowelCounter {
-    public static int countVowels(String str, int index) {
-        if (index >= str.length()) {
-            return 0;
-        }
-        
-        char ch = Character.toLowerCase(str.charAt(index));
-        int current = (ch == 'a' || ch == 'e' || ch == 'i' || 
-                      ch == 'o' || ch == 'u') ? 1 : 0;
-        
-        return current + countVowels(str, index + 1);
-    }
-    
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите строку: ");
-        String input = scanner.nextLine();
-        
-        int result = countVowels(input, 0);
-        System.out.println("Количество гласных: " + result);
-        
-        scanner.close();
-    }
-}
-```
-
-#### Python
-```python
-def count_vowels(s, index=0):
-    if index >= len(s):
-        return 0
-    
-    ch = s[index].lower()
-    current = 1 if ch in 'aeiou' else 0
-    
-    return current + count_vowels(s, index + 1)
-
-# Пример использования
-input_str = input("Введите строку: ")
-result = count_vowels(input_str)
-print("Количество гласных:", result)
-```
-
----
-
-### 2. Стратегия «разделяй и властвуй» на примере сортировки слиянием
+КОНТРОЛЬНЫЙ ВОПРОС (№5)
+"Стратегия «разделяй и властвуй» на примере сортировки слиянием"
 
 **Суть стратегии:**  
 Задача разбивается на более мелкие подзадачи того же типа, решается рекурсивно, а затем результаты объединяются в общее решение.
@@ -121,4 +37,3 @@ print("Количество гласных:", result)
 - Решение строится из решений подзадач (слияние).  
 - Рекурсия обеспечивает автоматическое разбиение до тривиальных случаев.
 
-**Временная сложность:** O(n log n) — оптимально для сравнительных сортировок.
